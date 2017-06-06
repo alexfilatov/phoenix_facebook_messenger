@@ -33,7 +33,7 @@ defmodule FacebookMessenger.Phoenix.Controller.Test do
       use FacebookMessenger.Phoenix.Controller
 
       def challenge_successfull(params) do
-        send(self, 1)
+        send(self(), 1)
       end
     end
 
@@ -49,7 +49,7 @@ defmodule FacebookMessenger.Phoenix.Controller.Test do
       use FacebookMessenger.Phoenix.Controller
 
       def challenge_failed(params) do
-        send(self, 2)
+        send(self(), 2)
       end
     end
 
