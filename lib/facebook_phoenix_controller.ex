@@ -35,9 +35,14 @@ defmodule FacebookMessenger.Phoenix.Controller do
       end
 
       def inform_and_reply({:ok, message}, conn) do
+        # responding 200 OK right away to avoid multiple webhook calls from FB
+        conn = resp(conn, 200, "OK")
+        respond.(conn)
+
+        # handling messages
         @callback_handler.message_received(message)
 
-        conn = resp(conn, 200, "")
+        # responding 200 OK again
         respond.(conn)
       end
 
